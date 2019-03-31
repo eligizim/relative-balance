@@ -3,7 +3,9 @@ package com.me.interview.application;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -22,6 +24,7 @@ public class TransactionProcessor {
 
     public String processTransactionFile(String filePath, String fromDateString, String toDateString, String accountId)
             throws IOException, ParseException {
+
 
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -92,21 +95,38 @@ public class TransactionProcessor {
     }
 
     public static void main(String[] args) {
-        String filePath = args[0];
-        String accountId = args[1];
-        String fromDate = args[2];
-        String toDate = args[3];
+        logger.info("Starting the app>>>>>");
+
 
         TransactionProcessor ptf = new TransactionProcessor();
 
         try {
-            ptf.processTransactionFile(filePath, fromDate, toDate, accountId);
+
+            BufferedReader reader =
+                    new BufferedReader(new InputStreamReader(System.in));
+
+            System.out.println("enter csv file path: ");
+            String filePath = reader.readLine();
+
+            System.out.println("enter from Date: ");
+            String fromDate = reader.readLine();
+
+            System.out.println("enter to Date: ");
+            String toDate = reader.readLine();
+
+            System.out.println("enter account ID: ");
+            String accountId = reader.readLine();
+
+           String balance = ptf.processTransactionFile(filePath, fromDate, toDate, accountId);
+
+           System.out.println("relative balance is: " + balance);
+
         } catch (IOException ex) {
-            logger.info("Failed to read the csv file located at: " + filePath);
+            logger.info("Failed to read the csv file" );
             logger.debug(ex.getMessage());
 
         } catch (ParseException ex) {
-            logger.info("Failed to parse the csv file: " + filePath);
+            logger.info("Failed to parse the csv file");
             logger.debug(ex.getMessage());
 
         }
