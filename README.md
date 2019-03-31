@@ -21,7 +21,14 @@ Junit, log4j, apache-commons-csv which all are listed in gradle file.
 
 ## run/build project
 ### run unit Tests
-clone the project and run the tests by gradle or import it in an IDE and run the unit tests by IDE
+clone the project and import it as a new project in an IDE and run the unit tests by IDE <br/>
+### run jar file
+clone the project, navigate to root folder and run below commands:<br/>
+    ./gradlew clean <br/>
+    ./gradlew fatJar <br/>
+    cd build/libs/ <br/>
+    java -jar relative-balance-run-1.0-SNAPSHOT.jar <br/>
+once running, it will ask to enter the csv file absolute path, from and to dates and accountID. After execution it will print the relative balance in terminal.    
 
 
 
