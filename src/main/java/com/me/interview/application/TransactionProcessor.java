@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 
-public class TransactionProcess {
-    final static Logger logger = Logger.getLogger(TransactionProcess.class);
+public class TransactionProcessor {
+    final static Logger logger = Logger.getLogger(TransactionProcessor.class);
 
 
 
@@ -97,7 +97,7 @@ public class TransactionProcess {
         String fromDate = args[2];
         String toDate = args[3];
 
-        TransactionProcess ptf = new TransactionProcess();
+        TransactionProcessor ptf = new TransactionProcessor();
 
         try {
             ptf.processTransactionFile(filePath, fromDate, toDate, accountId);

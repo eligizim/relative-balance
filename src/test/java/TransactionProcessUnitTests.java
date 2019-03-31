@@ -1,10 +1,11 @@
-import com.me.interview.application.TransactionProcess;
+import com.me.interview.application.TransactionProcessor;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedWriter;
@@ -15,6 +16,7 @@ import java.nio.file.Paths;
 import java.text.ParseException;
 
 
+
 public class TransactionProcessUnitTests {
 
     private final static String reversalAfterTimeFramePath = "/tmp/reversalAfterTimeFrame.csv";
@@ -23,11 +25,11 @@ public class TransactionProcessUnitTests {
     private final static String reversalWithinTimeFrameForTransactionOutsideTimeFramePath = "/tmp/reversalWithinTimeFrameForTransactionOutsideTimeFrame.csv";
 
 
-    final static Logger logger = Logger.getLogger(TransactionProcess.class);
+    final static Logger logger = Logger.getLogger(TransactionProcessUnitTests.class);
 
     @Test
     public void testProcessReversalAfterTimeFrame() {
-        TransactionProcess testClass = new TransactionProcess();
+        TransactionProcessor testClass = new TransactionProcessor();
         try {
             String res = testClass.processTransactionFile(reversalAfterTimeFramePath,"20/10/2018 12:00:00",
                     "20/10/2018 19:00:00", "ACC334455");
@@ -44,7 +46,7 @@ public class TransactionProcessUnitTests {
 
     @Test
     public void testProcessReversalBeforeTimeFrame() {
-        TransactionProcess testClass = new TransactionProcess();
+        TransactionProcessor testClass = new TransactionProcessor();
         try {
             String res = testClass.processTransactionFile(reversalBeforeTimeFramePath,"20/10/2018 12:00:00",
                     "20/10/2018 19:00:00", "ACC334455");
@@ -61,7 +63,7 @@ public class TransactionProcessUnitTests {
 
     @Test
     public void testProcessReversalWithinTimeFrame() {
-        TransactionProcess testClass = new TransactionProcess();
+        TransactionProcessor testClass = new TransactionProcessor();
         try {
             String res = testClass.processTransactionFile(reversalWithinTimeFramePath,"20/10/2018 12:00:00",
                     "20/10/2018 19:00:00", "ACC334455");
@@ -78,7 +80,7 @@ public class TransactionProcessUnitTests {
 
     @Test
     public void testReversalWithinTimeFrameForTransactionOutsideTimeFrame() {
-        TransactionProcess testClass = new TransactionProcess();
+        TransactionProcessor testClass = new TransactionProcessor();
         try {
             String res = testClass.processTransactionFile(reversalWithinTimeFrameForTransactionOutsideTimeFramePath,"20/10/2018 12:00:00",
                     "20/10/2018 19:00:00", "ACC334455");

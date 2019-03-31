@@ -1,2 +1,20 @@
-.DS_Store
-.idea
+*.class
+
+# Package Files #
+*.jar
+!gradle-wrapper.jar
+*.war
+*.ear
+
+.gradle/
+classes/
+build/
+out/
+/conf/
+
+# IDE Project files #
+*.iml
+*.ipr
+*.iws
+.idea/
+
